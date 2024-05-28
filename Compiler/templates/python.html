@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online PythФon Compiler</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+<div class="container">
+    <aside class="sidebar">
+        <img src="static/icons/new_file.png" alt="New File" title="New File">
+        <img src="static/icons/open_file.png" alt="Open File" title="Open File">
+        <img src="static/icons/save.png" alt="Save" title="Save">
+        <img src="static/icons/settings.png" alt="Settings" title="Settings">
+
+        <img src="static/icons/python.png" alt="Python" title="Python">
+        <img src="static/icons/cpp.png" alt="C++" title="C++">
+        <img src="static/icons/csharp.png" alt="Csharp" title="Csharp">
+        <img src="static/icons/js.png" alt="JavaScript" title="JavaScript">
+        <img src="static/icons/sql.png" alt="SQL" title="SQL">
+    </aside>
+    <div class="main-container">
+        <div class="editor-container">
+            <div class="editor-header">
+                <span class="filename">main.py</span>
+                <button class="run-button" onclick="runPython()">Run</button>
+            </div>
+            <textarea id="code" class="editor">print('Hello World!')</textarea>
+        </div>
+        <div class="resizer"></div>
+        <div class="output-container">
+            <pre id="output" class="output"></pre>
+            <button class="clear-output" onclick="clearOutput()">Clear</button>
+        </div>
+    </div>
+</div>
+<script src="static/script.js"></script>
+</body>
+</html>
