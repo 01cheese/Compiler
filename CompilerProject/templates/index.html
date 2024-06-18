@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Compiler</title>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <!-- CodeMirror CSS for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/material-darker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.0/split.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+</head>
+<body class="dark-theme">
+    <div class="container">
+        <aside class="sidebar">
+            <img src="../static/icons/python.png" alt="Python" class="icon" data-lang="py">
+            <img src="../static/icons/cpp.png" alt="C++" class="icon" data-lang="cpp">
+            <img src="../static/icons/csharp.png" alt="C#" class="icon" data-lang="cs">
+            <img src="../static/icons/js.png" alt="JavaScript" class="icon" data-lang="js">
+            <img src="../static/icons/sql.png" alt="SQL" class="icon" data-lang="sql">
+        </aside>
+        <main class="main-content" id="splitContainer">
+            <div class="editor-section" id="editorSection">
+                <div class="editor-header">
+                    <span class="filename">main.py</span>
+                    <div class="editor-buttons">
+                        <button id="saveButton">Save</button>
+                        <button id="runButton">Run</button>
+                        <button id="themeToggleButton">Theme</button>
+                        <!-- <button id="fullscreenButton">Fullscreen</button> -->
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <textarea id="codeEditor"></textarea>
+                </div>
+            </div>
+            <div class="output-section" id="outputSection">
+                <div class="output-header">
+                    <span>Output</span>
+                    <button id="clearButton">Clear</button>
+                </div>
+                <div class="output-container">
+                    <pre id="outputArea"></pre>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/sql/sql.min.js"></script>
+    <script src="../static/js/main.js"></script>
+</body>
+</html>
