@@ -19,6 +19,7 @@
 
 <textarea id="pythonCode" placeholder="Enter Python code here..."></textarea><br>
 <button onclick="runCode()">Run Code</button>
+<button onclick="clearConsole()">Clear Console</button>
 
 <h2>Output:</h2>
 <pre id="output"></pre>
@@ -46,6 +47,9 @@
         var input = document.getElementById('userInput').value;
         socket.emit('user_input', {input: input});  // Отправляем ввод на сервер
         document.getElementById('userInput').value = '';  // Очищаем поле ввода
+    }
+function clearConsole() {
+        document.getElementById('output').innerHTML = '';  // Очищаем консоль
     }
 </script>
 
