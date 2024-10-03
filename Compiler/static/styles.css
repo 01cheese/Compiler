@@ -1,104 +1,255 @@
-body {
+/* styles.css */
+html, body {
+    height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #282C34;
-    color: #ABB2BF;
+    padding: 0;
+}
+
+body {
+    font-family: "Cascadia Code", monospace;
     display: flex;
-    height: 100vh;
+    flex-direction: column;
+    background-color: #2e3b4e;
+    color: #ffffff;
+    overflow: hidden;
 }
 
 .container {
     display: flex;
-    width: 100%;
+    flex: 1 0 auto;
+    height: 100%;
 }
 
 .sidebar {
-    width: 50px;
-    background-color: #21252B;
+    background-color: #212c3a;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px 0;
+    height: 100%;
+    transition: transform 0.3s ease-in-out;
 }
 
-.sidebar img {
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+.icon {
     width: 30px;
-    margin: 10px 0;
+    height: 30px;
+    margin: 5px 0;
     cursor: pointer;
 }
 
-.main-container {
+.main-content {
     display: flex;
-    flex: 1;
-    overflow: hidden;
+    flex-grow: 1;
+    height: 100%;
+    transition: margin-left 0.3s ease-in-out, width 0.3s ease-in-out;
 }
 
-.editor-container {
-    flex: 1;
+.main-content.fullscreen {
+    margin-left: 0;
+    width: 100%;
+}
+
+.editor-section {
+    flex-basis: 50%; /* Левая половина экрана */
     display: flex;
     flex-direction: column;
 }
 
-.editor-header {
+.output-section {
+    flex-basis: 50%; /* Правая половина экрана */
+    display: flex;
+    flex-direction: column;
+}
+
+.editor-header, .output-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #3B4048;
     padding: 10px;
+    background-color: #212c3a;
+    border-bottom: 1px solid #394d6d;
+    flex-shrink: 0;
 }
 
-.filename {
-    color: #E06C75;
+.filename, .output-header span {
+    font-size: 18px;
 }
 
-.run-button {
-    background-color: #61AFEF;
+.editor-buttons button, #clearButton, #themeToggleButton, #fullscreenButton {
+    font-family: "Cascadia Code", monospace;
     border: none;
-    padding: 5px 10px;
-    color: white;
+    color: azure;
+    padding: 8px 16px;
+    margin-left: 10px;
     cursor: pointer;
+    border-radius: 4px;
 }
 
-.editor {
-    flex: 1;
-    background-color: #282C34;
-    color: #ABB2BF;
-    border: none;
-    padding: 10px;
-    font-size: 16px;
-    line-height: 1.5;
-    width: 100%;
-    height: calc(100vh - 100px);
-    resize: none;
+#saveButton {
+    background-color: #007bff;
 }
 
-.resizer {
-    width: 5px;
-    background-color: #3B4048;
-    cursor: col-resize;
-    position: relative;
+#runButton {
+    background-color: #28a745;
 }
 
-.output-container {
-    background-color: #1E1E1E;
-    padding: 10px;
-    border-top: 1px solid #3B4048;
-    width: 100%;
-    overflow-y: auto;
+#clearButton {
+    background-color: #dc3545;
 }
 
-.output {
-    background-color: #1E1E1E;
-    color: #9CDCFE;
+#themeToggleButton {
+    background-color: cadetblue; /* Blue for both themes */
+}
+
+#fullscreenButton {
+    background-color: #6c757d; /* Grey for fullscreen button */
+}
+
+.editor-container, .output-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    background-color: #0f172a;
+    overflow: auto; /* Added for scroll */
+}
+
+.CodeMirror {
+    flex-grow: 1;
     height: 100%;
-    overflow-y: auto;
 }
 
-.clear-output {
-    background-color: #E06C75;
-    border: none;
-    padding: 5px 10px;
-    color: white;
-    cursor: pointer;
-    margin-top: 10px;
+.CodeMirror-scroll {
+    height: 100%;
+    overflow: auto;
 }
+
+#outputArea {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    color: #00ff00;
+    flex-grow: 1;
+    overflow: auto;
+}
+
+/* Light theme styles */
+body.light-theme {
+    background-color: #f5f5f5;
+    color: #333333;
+}
+
+body.light-theme .sidebar {
+    background-color: #e0e0e0;
+}
+
+body.light-theme .editor-header, body.light-theme .output-header {
+    background-color: #d0d0d0;
+    border-bottom: 1px solid #bbbbbb;
+}
+
+body.light-theme .editor-container, body.light-theme .output-container {
+    background-color: #ffffff;
+}
+
+body.light-theme #outputArea {
+    color: #333333;
+}
+
+body.light-theme .editor-buttons button {
+    background-color: #007bff;
+}
+
+body.light-theme #runButton {
+    background-color: #28a745;
+}
+
+body.light-theme #clearButton {
+    background-color: #dc3545;
+}
+
+body.light-theme #themeToggleButton {
+    background-color: #394d6d; /* Orange for light theme */
+}
+
+body.fullscreen-mode {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #000;
+    z-index: 9999;
+}
+
+body.fullscreen-mode .editor-section,
+body.fullscreen-mode .output-section {
+    height: calc(100% - 40px); /* Adjusted for header height */
+}
+
+body.fullscreen-mode .sidebar {
+    transform: translateX(-100%);
+}
+
+body.fullscreen-mode .main-content {
+    margin-left: 0;
+    width: 100%;
+}
+
+
+
+/* Position input at the bottom right corner of the output section */
+.input-output-section {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.output-area {
+    flex-grow: 1;
+    background-color: #0f172a;
+    color: #00ff00;
+    padding: 10px;
+    overflow: auto;
+}
+
+.input-section {
+    flex-shrink: 0;
+    padding: 10px;
+    background-color: #1e293b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input-section label {
+    font-size: 16px;
+    margin-right: 10px;
+    color: #fff;
+}
+
+#userInput {
+    padding: 8px;
+    width: 200px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    background-color: #374151;
+    color: #fff;
+}
+
+#sendInput {
+    background-color: #28a745;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#sendInput:hover {
+    background-color: #218838;
+}
+
