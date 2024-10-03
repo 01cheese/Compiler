@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask C++ Compiler with Input</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
+        textarea { width: 100%; height: 200px; }
+        pre { background-color: #f4f4f4; padding: 10px; border: 1px solid #ccc; height: 300px; overflow: auto; }
+        button { padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer; }
+        button:hover { background-color: #218838; }
+    </style>
+</head>
+<body>
+
+<h1>Flask C++ Compiler with Input</h1>
+
+<textarea id="cppCode" placeholder="Enter C++ code here..."></textarea><br>
+<button onclick="runCode()">Run Code</button>
+<button onclick="clearConsole()">Clear Console</button>
+
+
+<h2>Output:</h2>
+<pre id="output"></pre>
+
+<h2>Enter Input:</h2>
+<input type="text" id="userInput" placeholder="Enter input for the program...">
+<button onclick="sendInput()">Send Input</button>
+
+<script>
+    var socket = io.connect();
+
+    // Обработчик для приема вывода из Flask
+    socket.on('output', function(data) {
+        var output = document.getElementById('output');
+        output.innerHTML += data.data + '\n';  // Добавляем вывод по мере появления
+    });
+
+    function runCode() {
+        var code = document.getElementById('cppCode').value;
+        document.getElementById('output').innerHTML = '';  // Очищаем предыдущее
+        socket.emit('run_code', {code: code});  // Отправляем код на сервер
+    }
+
+    function sendInput() {
+        var input = document.getElementById('userInput').value;
+        socket.emit('user_input', {input: input});  // Отправляем ввод на сервер
+        document.getElementById('userInput').value = '';  // Очищаем поле ввода
+    }
+function clearConsole() {
+        document.getElementById('output').innerHTML = '';  // Очищаем консоль
+    }
+</script>
+
+</body>
+</html>
