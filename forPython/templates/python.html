@@ -3,55 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask Python Compiler with Input</title>
+    <title>Online Compiler</title>
+    <link rel="stylesheet" href="../static/styles.css">
+    <!-- CodeMirror CSS for syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/material-darker.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/default.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.6.0/split.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; }
-        textarea { width: 100%; height: 200px; }
-        pre { background-color: #f4f4f4; padding: 10px; border: 1px solid #ccc; height: 300px; overflow: auto; }
-        button { padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer; }
-        button:hover { background-color: #218838; }
-    </style>
 </head>
-<body>
+<body class="dark-theme">
+    <div class="container">
+        <aside class="sidebar">
+            <img src="../static/icons/python.png" alt="Python" class="icon" data-lang="py">
+            <img src="../static/icons/cpp.png" alt="C++" class="icon" data-lang="cpp">
+            <img src="../static/icons/csharp.png" alt="C#" class="icon" data-lang="cs">
+            <img src="../static/icons/js.png" alt="JavaScript" class="icon" data-lang="js">
+            <img src="../static/icons/sql.png" alt="SQL" class="icon" data-lang="sql">
+        </aside>
+        <main class="main-content" id="splitContainer">
+            <div class="editor-section" id="editorSection">
+                <div class="editor-header">
+                    <span class="filename">main.py</span>
+                    <div class="editor-buttons">
+                        <button id="saveButton">Save</button>
+                        <button id="runButton">Run</button>
+                        <button id="themeToggleButton">Theme</button>
+                    </div>
+                </div>
+                <div class="editor-container">
+                    <textarea id="codeEditor"></textarea>
+                </div>
+            </div>
 
-<h1>Flask Python Compiler with Input</h1>
+                <div class="output-section" id="outputSection">
+                    <div class="output-header">
+                        <span>Output</span>
+                        <button id="clearButton">Clear</button>
+                    </div>
+                    <div class="output-container">
+                        <pre id="outputArea"></pre>
+                    </div>
 
-<textarea id="pythonCode" placeholder="Enter Python code here..."></textarea><br>
-<button onclick="runCode()">Run Code</button>
-<button onclick="clearConsole()">Clear Console</button>
+                    <div class="input-section">
+                        <label for="userInput">Enter Input:</label>
+                        <input type="text" id="userInput" placeholder="Enter input for the program.">
+                        <button id="sendInput">Send Input</button>
+                    </div>
+                </div>
 
-<h2>Output:</h2>
-<pre id="output"></pre>
 
-<h2>Enter Input:</h2>
-<input type="text" id="userInput" placeholder="Enter input for the program...">
-<button onclick="sendInput()">Send Input</button>
-
-<script>
-    var socket = io.connect();
-
-    // Обработчик для приёма вывода из Flask
-    socket.on('output', function(data) {
-        var output = document.getElementById('output');
-        output.innerHTML += data.data + '\n';  // Добавляем вывод по мере появления
-    });
-
-    function runCode() {
-        var code = document.getElementById('pythonCode').value;
-        document.getElementById('output').innerHTML = '';  // Очищаем предыдущее
-        socket.emit('run_code', {code: code});  // Отправляем код на сервер
-    }
-
-    function sendInput() {
-        var input = document.getElementById('userInput').value;
-        socket.emit('user_input', {input: input});  // Отправляем ввод на сервер
-        document.getElementById('userInput').value = '';  // Очищаем поле ввода
-    }
-function clearConsole() {
-        document.getElementById('output').innerHTML = '';  // Очищаем консоль
-    }
-</script>
-
+        </main>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/sql/sql.min.js"></script>
+    <script src="../static/main.js"></script>
 </body>
 </html>
