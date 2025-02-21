@@ -1,0 +1,430 @@
+/* Landing.css */
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    scrollbar-width: none; /* Скрывает скроллбар в Firefox */
+    -ms-overflow-style: none; /* Скрывает скроллбар в Internet Explorer и Edge */
+    display: flex;
+    flex-direction: column;
+
+}
+body {
+    padding: 20px;
+}
+
+.body-section::-webkit-scrollbar {
+    display: none; /* Скрывает скроллбар в Chrome, Safari, Opera */
+}
+
+body.dark-mode {width: 100%;
+  height: 100%;
+  --s: 200px; /* control the size */
+  --c1: #1d1d1d;
+  --c2: #4e4f51;
+  --c3: #3c3c3c;
+
+  background: repeating-conic-gradient(
+        from 30deg,
+        #0000 0 120deg,
+        var(--c3) 0 180deg
+      )
+      calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
+    repeating-conic-gradient(
+      from 30deg,
+      var(--c1) 0 60deg,
+      var(--c2) 0 120deg,
+      var(--c3) 0 180deg
+    );
+  background-size: var(--s) calc(var(--s) * 0.577);
+}
+
+
+body.light-mode {
+     width: 100%;
+  height: 100%;
+  --s: 200px; /* control the size */
+  --c1: #414141;
+  --c2: #bebebe;
+  --c3: #ffffff;
+
+  background: repeating-conic-gradient(
+        from 30deg,
+        #0000 0 120deg,
+        var(--c3) 0 180deg
+      )
+      calc(0.5 * var(--s)) calc(0.5 * var(--s) * 0.577),
+    repeating-conic-gradient(
+      from 30deg,
+      var(--c1) 0 60deg,
+      var(--c2) 0 120deg,
+      var(--c3) 0 180deg
+    );
+  background-size: var(--s) calc(var(--s) * 0.577);
+
+}
+
+
+header {
+    width: 100%;
+    height: 20px;
+     background-color:#27282b;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    justify-content: center;
+    top: 0;
+    left: 0;
+}
+
+h2.logo {
+    margin: 0;
+    font-size: 15px;
+    font-family: monospace;
+}
+
+h2.logo a {
+    text-decoration: none;
+    color: white;
+    margin-right: 3vw;
+}
+
+
+/* Основной цвет (добавляет стиль первичного элемента) */
+.primary {
+    color: #ffffff; /* Белый текст */
+}
+
+.themeButton {
+    padding: 10px;
+    background-color: #444;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    min-height: 4vh;
+}
+
+.themeButton.light {
+    background-color: #ffffff;
+    color: black;
+}
+
+.landingContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+/* Верхняя панель */
+.toolbar {
+    display: flex;
+    /*justify-content: space-between;*/
+    max-width: 1500px;
+    margin-inline: auto;
+    margin-top: 5px;
+}
+
+.themeButton {
+    background-color: #000000; /* Тёмный фон кнопки */
+    color: green; /* Зелёный цвет текста */
+    border: 1px solid green; /* Зелёная рамка */
+    border-top-left-radius: 5px; /* Скруглённые углы */
+     /*border-bottom-left-radius: 5px; !* Скруглённые углы *!*/
+    padding: 8px 16px;
+    font-size: 12px;
+    cursor: pointer;
+    min-width: 80px;
+    margin-right: 5px;
+
+    /* Для красивого анимированного перехода */
+    transition: background-color 0.2s ease, color 0.2s ease;
+
+    /* Чтобы иконка и текст были по центру одной линии */
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.themeButton.run:hover {
+    background-color: green; /* Зелёный фон при наведении */
+    color: #ffffff; /* Белый текст при наведении */
+
+}
+
+.themeButton.process:hover {
+    background-color: #DC3545; /* Зелёный фон при наведении */
+    color: #ffffff; /* Белый текст при наведении */
+}
+
+.themeButton.process {
+    border: 1px solid red;
+    color: #DC3545;
+    text-align: center;
+}
+
+.scrollButton {
+    display: flex;
+}
+
+/* Основной контейнер */
+.mainContainer {
+    width: 80%;
+    max-width: 1000px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+}
+
+.editorContainer {
+    height: 55vh;
+    max-width: 1500px;
+    /*max-height: 600px;*/
+    margin-top: 5px;
+    margin-inline: auto;
+    border: 1px solid green; /* Граница */
+    border-radius: 5px; /* Скругленные углы */
+    overflow: hidden; /* Обрезка лишнего */
+    background: #1e1e1e; /* Тёмный фон, как в Ace Editor */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Контейнер для вывода и ввода */
+.outputInputContainer {
+    display: flex;
+    width: 100%;
+    height: 50vh;
+    gap: 10px;
+    overflow: hidden;
+}
+
+
+/* Кнопочная панель слева */
+.button-column {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 8px;
+    background-color: #27282b; /* Тёмный фон */
+    border-right: 1px solid #444;
+    height: 35vh;
+}
+
+.button-column button {
+    background-color: transparent;
+    border: none;
+    color: #bbb;
+    font-size: 10px;
+    padding: 6px;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10px;
+
+}
+
+.button-column button:hover {
+    background-color: #333;
+}
+
+
+.hr {
+    background-color: green;
+    margin: 20px;
+    max-width: 1500px;
+    margin-inline: auto;
+}
+
+
+/* Блок вывода */
+.output-block {
+    background-color: #0f0f0f; /* Чёрный фон */
+    color: #ffffff; /* Белый текст */
+    padding: 10px;
+    max-height: 35vh;
+    overflow-y: auto;
+    overflow-x: auto;
+    scrollbar-width: none; /* Скрывает скроллбар в Firefox */
+    -ms-overflow-style: none; /* Скрывает скроллбар в Internet Explorer и Edge */
+    flex-grow: 1;
+    font-family: "Courier New", monospace;
+}
+
+.output-block pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+/* Блок вывода */
+.customInputContainer {
+    min-width: 10%;
+
+    flex-grow: 1;
+    font-family: "Courier New", monospace;
+}
+
+.bottom-container {
+    display: flex;
+    overflow: hidden;
+
+    margin-top: 5px;
+
+}
+
+
+/* Левая часть (вывод) */
+.output-section {
+    width: 100%;
+    max-width: 750px;
+    margin-left: auto;
+    height: 35vh;
+    background-color: #0f0f0f;
+    color: white;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+
+}
+
+.output-container {
+    display: flex;
+    margin-inline: auto;
+
+}
+
+
+/* Правая часть (ввод) */
+.input-section {
+
+    margin-right: auto;
+    width: 100%;
+    max-width: 750px;
+    height: 35vh;
+    background-color: #0f0f0f;
+    color: #fff;
+    overflow: auto;
+    scrollbar-width: none; /* Скрывает скроллбар в Firefox */
+    -ms-overflow-style: none; /* Скрывает скроллбар в Internet Explorer и Edge */
+
+}
+
+.output-block::-webkit-scrollbar {
+    display: none; /* Скрывает скроллбар в Chrome, Safari, Opera */
+}
+
+.input-section::-webkit-scrollbar {
+    display: none; /* Скрывает скроллбар в Chrome, Safari, Opera */
+}
+
+
+/* Убираем возможность растягивать textarea */
+.input-section textarea {
+    width: 100%;
+    height: 35vh;
+    resize: none;
+    background-color: #27282b;
+    border-color: green;
+    padding: 10px;
+    font-family: "Courier New", monospace;
+}
+
+
+/*------------ text ---------------*/
+.textBlock {
+    font-family: monospace;
+    max-width: 1500px;
+    margin-inline: auto;
+    margin-top: 30px;
+    background-color: #1e1e1e;
+    color: #ddd;
+    border-radius: 10px;
+    padding: 25px;
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+.header1 {
+    font-family: monospace;
+    font-size: 30px;
+    color: #0f0;
+    text-align: center;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding-bottom: 10px;
+}
+
+.para {
+    font-family: monospace;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #ddd;
+    text-align: justify;
+    margin: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    background-color: #27282b;
+    padding: 12px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+ul li:hover {
+    background-color: #3c3c3c;
+    transform: translateX(5px);
+}
+
+ul li::before {
+    content: "▶";
+    color: #0f0;
+    font-size: 14px;
+}
+
+a {
+    color: #0f0;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease-in-out;
+}
+
+
+
+.blocks {
+    display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 100px);
+}
+
+
+@media (max-width: 768px) {
+    .textBlock {
+        padding: 15px;
+    }
+
+    .header1 {
+        font-size: 24px;
+    }
+
+    .para {
+        font-size: 16px;
+    }
+}

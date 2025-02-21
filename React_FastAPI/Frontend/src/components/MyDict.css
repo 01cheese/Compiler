@@ -1,0 +1,95 @@
+:root {
+  /* Светлая тема */
+  --btn-bg-light: #ffffff;
+  --btn-text-light: #3e4963;
+  --btn-border-light: #b5bfd9;
+  --btn-bg-active-light: #e6ffe6;
+  --btn-text-active-light: green;
+
+  /* Темная тема */
+  --btn-bg-dark: #222;
+  --btn-text-dark: #bdbdbd;
+  --btn-border-dark: #444;
+  --btn-bg-active-dark: #444;
+  --btn-text-active-dark: green;
+}
+
+.languagesDropdownButton {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 12px;
+  border: 1px solid green; /* Добавлена красная рамка вокруг всего блока */
+  border-radius: 5px; /* Добавляем скругление углов, если нужно */
+  overflow: hidden; /* Чтобы кнопки внутри не выходили за границы */
+}
+
+
+/* Общий стиль контейнера */
+.languagesDropdownButton div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  font-size: 12px;
+}
+
+/* Скрываем радио-кнопки */
+.languagesDropdownButton input[type="radio"] {
+  clip: rect(0 0 0 0);
+  clip-path: inset(100%);
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Стиль кнопок для светлой темы */
+.light-mode .languagesDropdownButton label span {
+  background-color: var(--btn-bg-light);
+  color: var(--btn-text-light);
+  box-shadow: 0 0 0 0.0625em var(--btn-border-light);
+}
+
+/* Стиль кнопок для темной темы */
+.dark-mode .languagesDropdownButton label span {
+  background-color: var(--btn-bg-dark);
+  color: var(--btn-text-dark);
+  box-shadow: 0 0 0 0.0625em var(--btn-border-dark);
+}
+
+/* Стиль активной кнопки (выбранного языка) для светлой темы */
+.light-mode .languagesDropdownButton input[type="radio"]:checked + span {
+  background-color: var(--btn-bg-active-light);
+  color: var(--btn-text-active-light);
+}
+
+/* Стиль активной кнопки (выбранного языка) для темной темы */
+.dark-mode .languagesDropdownButton input[type="radio"]:checked + span {
+  background-color: var(--btn-bg-active-dark);
+  color: var(--btn-text-active-dark);
+}
+
+/* Стили самих кнопок */
+label span {
+    color: #bdbdbd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 4vh;
+  cursor: pointer;
+  padding: 0.375em 0.75em;
+  position: relative;
+  margin-left: 0.0625em;
+  letter-spacing: 0.05em;
+  text-align: center;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Закругление краев первой и последней кнопок */
+label:first-child span {
+  border-radius: 5px 0 0 5px;
+}
+
+label:last-child span {
+  border-radius: 0 5px 5px 0;
+}
